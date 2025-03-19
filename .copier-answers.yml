@@ -1,0 +1,18 @@
+# Changes here will be overwritten by Copier
+_commit: 2.6.0
+_src_path: gh:DiamondLightSource/python-copier-template
+author_email: joseph.ware@diamond.ac.uk
+author_name: Joseph Ware
+component_lifecycle: experimental
+component_owner: ''
+component_type: service
+description: Testing that the python-copier-template instructions work
+distribution_name: test-joseph
+docker: true
+docs_type: README
+git_platform: github.com
+github_org: DiamondLightSource
+package_name: test_joseph
+pypi: false
+repo_name: test-joseph
+type_checker: pyright

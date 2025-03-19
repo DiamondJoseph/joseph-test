@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: test-joseph
+  title: test-joseph
+  description: Testing that the python-copier-template instructions work
+spec:
+  type: service
+  lifecycle: experimental
+  owner: 
