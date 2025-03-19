@@ -35,7 +35,7 @@ dev = [
 test-joseph = "test_joseph.__main__:main"
 
 [project.urls]
-GitHub = "https://github.com/DiamondLightSource/test-joseph"
+GitHub = "https://github.com/DiamondJoseph/test-joseph"
 
 [[project.authors]] # Further authors may be added by duplicating this section
 email = "joseph.ware@diamond.ac.uk"
