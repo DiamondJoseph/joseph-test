@@ -23,7 +23,9 @@ FROM python:${PYTHON_VERSION}-slim AS runtime
 # Add apt-get system dependecies for runtime here if needed
 COPY --from=build /venv/ /venv/
 ENV PATH=/venv/bin:$PATH
+RUN pip install debugpy
+
 
 # change this entrypoint if it is not the same as the repo
-ENTRYPOINT ["test-joseph"]
-CMD ["--version"]
+ENTRYPOINT ["python"]
+CMD ["-m", "test-joseph", "--version"]
