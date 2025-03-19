@@ -21,7 +21,7 @@ jobs:
         id: install
 
       - name: Lint Helm chart
-        run: helm lint joseph-test
+        run: helm lint helm/joseph-test
 
       - name: Log in to GitHub Container Registry
         if: github.ref_type == 'tag'
