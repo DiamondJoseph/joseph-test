@@ -34,4 +34,4 @@ jobs:
         run: |
           helm dependencies update helm/joseph-test
           helm package helm/joseph-test --version ${{ steps.meta.outputs.version }} --app-version ${{ steps.meta.outputs.version }} -d /tmp/
-          helm push /tmp/joseph-test-${{ steps.meta.outputs.version }}.tgz oci://ghcr.io/${{ github.repository_owner }}/charts
+          helm push /tmp/joseph-test-${{ steps.meta.outputs.version }}.tgz oci://ghcr.io/${{ github.repository }}
