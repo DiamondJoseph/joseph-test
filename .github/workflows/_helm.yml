@@ -6,12 +6,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Assign REPO environment variables
+      - name: Assign CHART_REPO environment variables
         # This is required because the oci repository must be lowercase
         run: |
-          echo "REPO=ghcr.io/${REPO@L}" >>${GITHUB_ENV}
+          echo "CHART_REPO=ghcr.io/${OWNER@L}" >>${GITHUB_ENV}
         env:
-          REPO: "${{ github.repository }}"
+          OWNER: "${{ github.repository_owner }}"
 
       - name: Checkout
         uses: actions/checkout@v4
@@ -34,11 +34,11 @@ jobs:
       - name: Log in to GitHub Container Registry
         if: github.ref_type == 'tag'
         run: |
-          echo ${{ secrets.GITHUB_TOKEN }} | helm registry login ${{ env.REPO }} --username ${{ github.repository_owner }} --password-stdin
+          echo ${{ secrets.GITHUB_TOKEN }} | helm registry login ${{ env.CHART_REPO }} --username ${{ github.repository_owner }} --password-stdin
 
       - name: Package Helm chart to container registry
         if: github.ref_type == 'tag'
         run: |
           helm dependencies update helm/joseph
           helm package helm/joseph --version ${{ steps.meta.outputs.version }} --app-version ${{ steps.meta.outputs.version }} -d /tmp/
-          helm push /tmp/joseph-${{ steps.meta.outputs.version }}.tgz oci://${{ env.REPO }}/charts
+          helm push /tmp/joseph-${{ steps.meta.outputs.version }}.tgz oci://${{ env.CHART_REPO }}/charts
