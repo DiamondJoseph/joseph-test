@@ -9,15 +9,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Create tags for publishing image
+      - name: Create tag for publishing chart
         id: meta
         uses: docker/metadata-action@v5
         with:
           images: ghcr.io/${{ github.repository }}
           tags: |
             type=semver,pattern={{version}}
-            type=ref,event=tag
-            type=raw,value=latest
 
       - name: Install Helm
         uses: Azure/setup-helm@v4
@@ -31,9 +29,9 @@ jobs:
         run: |
           echo ${{ secrets.GITHUB_TOKEN }} | helm registry login ghcr.io/${{ github.repository }} --username ${{ github.repository_owner }} --password-stdin
 
-      - name: package chart and push it
+      - name: Package Helm chart to container registry
         if: github.ref_type == 'tag'
         run: |
-          helm dependencies update helm/test_joseph
-          helm package helm/test_joseph --version ${{ steps.meta.outputs.version }} --app-version ${{ steps.meta.outputs.version }} -d /tmp/
-          helm push /tmp/test_joseph-${{ steps.meta.outputs.version }}.tgz oci://ghcr.io/${{ github.repository_owner }}/charts
+          helm dependencies update helm/test-joseph
+          helm package helm/test-joseph --version ${{ steps.meta.outputs.version }} --app-version ${{ steps.meta.outputs.version }} -d /tmp/
+          helm push /tmp/test-joseph-${{ steps.meta.outputs.version }}.tgz oci://ghcr.io/${{ github.repository_owner }}/charts
