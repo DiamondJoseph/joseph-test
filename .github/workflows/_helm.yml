@@ -7,9 +7,11 @@ jobs:
 
     steps:
       - name: Assign REPO environment variables
-        # This is required because the oci repository must be all lowercase
+        # This is required because the oci repository must be lowercase
         run: |
-          echo "REPO=ghcr.io/${{ github.repository@L }}" >>${GITHUB_ENV}
+          echo "REPO=ghcr.io/${REPO@L}" >>${GITHUB_ENV}
+        env:
+          REPO: "${{ github.repository }}"
 
       - name: Checkout
         uses: actions/checkout@v4
