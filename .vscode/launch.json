@@ -18,6 +18,36 @@
                 // Enable break on exception when debugging tests (see: tests/conftest.py)
                 "PYTEST_RAISE": "1",
             },
+        },
+        {
+            "name": "Python Debugger: Remote Attach",
+            "type": "debugpy",
+            "request": "attach",
+            "connect": {
+                "host": "localhost",
+                "port": 5678
+            },
+            "pathMappings": [
+                {
+                    "localRoot": "${workspaceFolder}/src",
+                    "remoteRoot": "/venv/lib/python3.12/site-packages/test_joseph"
+                }
+            ],
+            "justMyCode": false,
+            "autoReload": {
+                "enable": true,
+                "exclude": [
+                    "**/.git/**",
+                    "**/__pycache__/**",
+                    "**/node_modules/**",
+                    "**/.metadata/**",
+                    "**/site-packages/**"
+                ],
+                "include": [
+                    "**/*.py",
+                    "**/*.pyw"
+                ]
+            }
         }
     ]
 }
