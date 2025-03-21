@@ -44,7 +44,7 @@ spec:
           - "0.0.0.0:{{ .Values.debug.port }}"
           {{- end }}
           - "-m"
-          - "test-joseph"
+          - "test_joseph"
           - "serve"
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
