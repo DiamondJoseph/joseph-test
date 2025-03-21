@@ -12,7 +12,11 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
 ]
 description = "Testing that the python-copier-template instructions work"
-dependencies = [] # Add project dependencies here, e.g. ["click", "numpy"]
+dependencies = [
+    "fastapi>=0.112.0",
+    "pydantic>=2.0",
+    "uvicorn",
+] # Project dependencies
 dynamic = ["version"]
 license.file = "LICENSE"
 readme = "README.md"
