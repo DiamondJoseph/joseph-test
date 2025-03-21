@@ -16,7 +16,7 @@ ENV PATH=/venv/bin:$PATH
 FROM developer AS build
 COPY . /context
 WORKDIR /context
-RUN touch dev-requirements.txt && pip install -c dev-requirements.txt .
+RUN touch dev-requirements.txt && pip install -c dev-requirements.txt -e .
 
 # The runtime stage copies the built venv into a slim runtime container
 FROM python:${PYTHON_VERSION}-slim AS runtime
