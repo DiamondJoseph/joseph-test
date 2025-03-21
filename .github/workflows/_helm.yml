@@ -9,9 +9,9 @@ jobs:
       - name: Assign CHART_REPO environment variables
         # This is required because the oci repository must be lowercase
         run: |
-          echo "CHART_REPO=ghcr.io/${OWNER@L}" >>${GITHUB_ENV}
+          echo "CHART_REPO=ghcr.io/${REPO@L}" >>${GITHUB_ENV}
         env:
-          OWNER: "${{ github.repository_owner }}"
+          REPO: "${{ github.repository }}"
 
       - name: Checkout
         uses: actions/checkout@v4
