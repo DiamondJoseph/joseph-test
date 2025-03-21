@@ -28,4 +28,4 @@ RUN pip install debugpy
 
 # change this entrypoint if it is not the same as the repo
 ENTRYPOINT ["python"]
-CMD ["-m", "test-joseph", "--version"]
+CMD ["-m", "test-joseph", "serve"]
