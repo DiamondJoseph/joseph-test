@@ -29,8 +29,8 @@
             },
             "pathMappings": [
                 {
-                    "localRoot": "${workspaceFolder}/src/test_joseph",
-                    "remoteRoot": "/venv/lib/python3.11/site-packages/test_joseph"
+                    "localRoot": "${workspaceFolder}/src/",
+                    "remoteRoot": "/service/src/"
                 }
             ],
             "justMyCode": false,

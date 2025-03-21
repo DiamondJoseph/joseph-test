@@ -16,15 +16,18 @@ ENV PATH=/venv/bin:$PATH
 FROM developer AS build
 COPY . /context
 WORKDIR /context
-RUN touch dev-requirements.txt && pip install -c dev-requirements.txt -e .
+RUN touch dev-requirements.txt && pip install -r dev-requirements.txt
 
 # The runtime stage copies the built venv into a slim runtime container
 FROM python:${PYTHON_VERSION}-slim AS runtime
 # Add apt-get system dependecies for runtime here if needed
 COPY --from=build /venv/ /venv/
+COPY --from=build /context/src /service/src
+COPY --from=build /context/pyproject.toml /service/pyproject.toml
+
 ENV PATH=/venv/bin:$PATH
 RUN pip install debugpy
-
+RUN pip install -e /service --no-dependencies
 
 # change this entrypoint if it is not the same as the repo
 ENTRYPOINT ["python"]
