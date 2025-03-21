@@ -1,13 +1,15 @@
-
 import click
-from . import __version__
 import uvicorn
+
 from test_joseph.app import make_app
+
+from . import __version__
+
 
 @click.group()
 @click.version_option(version=__version__, prog_name="joseph")
-def main() -> None:
-    ...
+def main() -> None: ...
+
 
 @main.command(name="serve")
 @click.option(
