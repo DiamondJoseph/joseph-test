@@ -46,6 +46,10 @@ spec:
           - "-m"
           - "test_joseph"
           - "serve"
+          - "--host"
+          - "0.0.0.0"
+          - "--port"
+          - {{ .Values.service.port }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
